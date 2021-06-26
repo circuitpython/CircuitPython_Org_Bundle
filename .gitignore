@@ -3,3 +3,4 @@ build/*
 bundles
 build_deps
 build-circuitpython*
+.idea/*
