@@ -1,0 +1,3 @@
+[submodule "libraries/helpers/displayio_annotation"]
+	path = libraries/helpers/displayio_annotation
+	url = https://github.com/circuitpython/CircuitPython_Org_DisplayIO_Annotation.git
