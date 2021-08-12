@@ -38,4 +38,4 @@ else
   P="--package_folder_prefix $P"
 fi
 
-circuitpython-build-bundles --filename_prefix circuitpython-org-bundle --library_location libraries --library_depth 2 "$P"
+circuitpython-build-bundles --filename_prefix circuitpython-org-bundle --library_location libraries --library_depth 2 $P
