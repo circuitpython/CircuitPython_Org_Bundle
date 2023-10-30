@@ -6,20 +6,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-    - name: Set up Python 3.6
-      uses: actions/setup-python@v1
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.6
+        python-version: 3.11
     - name: Versions
       run: |
         python3 --version
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
       with:
         submodules: true
+    - name: Fetch correct submodule shas
+      run: git submodule foreach 'git fetch --tags --depth 1 origin $sha1 && git checkout -q $sha1'
     - name: Install deps
       run: |
         sudo apt-get install -y gettext gawk

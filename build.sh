@@ -28,14 +28,8 @@ set -e
 
 P=$(
 ls -RUx |
-gawk -F '\n' '{ match($1, /(drivers|helpers)\/(.+)\/(.+)\:/, arr) ; if (length(arr[0]) > 0 && match(arr[3], arr[2]) > 0) printf "%s, ", arr[3] }' |
+gawk -F '\n' '{ match($1, /(drivers|helpers)\/(.+)\/(.+):/, arr) ; if (length(arr[0]) > 0 && match(arr[3], arr[2]) > 0) printf "%s, ", arr[3] }' |
 gawk '{ trimmed = substr($0, 1, length($0) - 2) ; print "\"" trimmed "\"" }'
 )
 
-if [ -z "$P" ]; then
-  P=""
-else
-  P="--package_folder_prefix $P"
-fi
-
-circuitpython-build-bundles --filename_prefix circuitpython-org-bundle --library_location libraries --library_depth 2 $P
+circuitpython-build-bundles --filename_prefix circuitpython-org-bundle --library_location libraries --library_depth 2 --package_folder_prefix "$P"
